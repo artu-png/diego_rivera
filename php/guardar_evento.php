@@ -1,7 +1,7 @@
 <?php
 session_start();
-include 'conexion_be.php';
-include 'funciones_permisos.php';
+include 'php/conexion_be.php';
+include 'php/funciones_permisos.php';
 
 if (!tienePermiso('publicar_contenido')) {
     exit("Error: No tienes permisos para crear contenido.");
@@ -38,8 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!empty($_FILES['archivos_multimedia']['name'][0])) {
             
-            if (!file_exists('img_eventos')) {
-                mkdir('img_eventos', 0777, true);
+            if (!file_exists('../img_eventos')) {
+                mkdir('../img_eventos', 0777, true);
             }
 
             foreach ($_FILES['archivos_multimedia']['name'] as $key => $val) {
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $ruta_temp = $_FILES['archivos_multimedia']['tmp_name'][$key];
                 
                 $nombre_final = time() . "_" . $nombre_original;
-                $ruta_destino = "img_eventos/" . $nombre_final;
+                $ruta_destino = "../img_eventos/" . $nombre_final;
 
                 if (move_uploaded_file($ruta_temp, $ruta_destino)) {
                     $sql_img = "INSERT INTO multimedia_eventos (ruta_archivo, tipo_archivo, titulo_archivo, id_evento) VALUES (?, 'image', ?, ?)";
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             }
         }
-        echo '<script>alert("¡Evento publicado con éxito!"); window.location = "https://iguana-angler-curliness.ngrok-free.dev/diego_rivera/admin_panel.php";</script>';
+        echo '<script>alert("¡Evento publicado con éxito!"); window.location = "https://iguana-angler-curliness.ngrok-free.dev/diego_rivera/php/admin_panel.php";</script>';
     } else {
         echo "Error al guardar el evento: " . mysqli_error($conexion);
     }

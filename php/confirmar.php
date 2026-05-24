@@ -1,5 +1,5 @@
 <?php
-    include 'conexion_be.php';
+    include 'php/conexion_be.php';
 
     if(isset($_GET['token'])){
         $token = $_GET['token'];

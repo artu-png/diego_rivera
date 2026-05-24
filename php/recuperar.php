@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>recuperar contraseña</title>
-    <link rel="stylesheet" href="css/estilos.css?v=1.51">
-    <link rel="icon" href="img_video/Adobe Express - file.png">
-    <script defer src="js/index.js"></script>
+    <link rel="stylesheet" href="../css/estilos.css?v=1.51">
+    <link rel="icon" href="../img_video/Adobe Express - file.png">
+    <script defer src="../js/index.js"></script>
 </head>
 <body>
     <header class="header">
         <nav class="nav">
-            <a href="index.php" class="logo">
-                <img class="img" src="img_video/WhatsApp_Image_2026-03-02_at_4.15.30_PM-removebg-preview.png" alt="">
+            <a href="../index.php" class="logo">
+                <img class="img" src="../img_video/WhatsApp_Image_2026-03-02_at_4.15.30_PM-removebg-preview.png" alt="">
                 <h1>Jose Diego Maria Rivera</h1>
             </a>
             <button class="nav-toggle" aria-label="Abrir menu">☰</button>
             
             <ul class="nav-menu" id="navlinks">
-                <li class="nav-menu-item"><a href="index.php" class="nav-menu-link">inicio</a></li>
+                <li class="nav-menu-item"><a href="../index.php" class="nav-menu-link">inicio</a></li>
 
                 <?php
-                include 'conexion_be.php';
+                include 'php/conexion_be.php';
                 
                 $query_menu = mysqli_query($conexion, "SELECT * FROM secciones_paginas");
 

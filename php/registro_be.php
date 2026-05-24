@@ -7,7 +7,7 @@
     require 'librerias/PHPMailer-master/src/PHPMailer.php';
     require 'librerias/PHPMailer-master/src/SMTP.php';
 
-    include 'conexion_be.php';
+    include 'php/conexion_be.php';
 
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
@@ -56,7 +56,7 @@
 
         $mail->isHTML(true);
         $mail->Subject = 'Confirma tu registro';
-        $url_confirmacion = "https://iguana-angler-curliness.ngrok-free.dev/diego_rivera/confirmar.php?token=" . $token;
+        $url_confirmacion = "https://iguana-angler-curliness.ngrok-free.dev/diego_rivera/php/confirmar.php?token=" . $token;
         $mail->Body = "
             <div style='font-family: Arial, sans-serif; border: 1px solid #ddd; padding: 20px;'>
                 <h1 style='color: #333;'>¡Hola, $nombre!</h1>

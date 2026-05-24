@@ -1,7 +1,7 @@
 <?php
 session_start();
-include 'conexion_be.php';
-include 'funciones_permisos.php';
+include 'php/conexion_be.php';
+include 'php/funciones_permisos.php';
 
 if (!tienePermiso('publicar_contenido')) {
     exit("Error: No tienes permisos para crear contenido.");
@@ -17,7 +17,7 @@ $fecha  = date('Y-m-d');
 // manejo del archivo
 $nombre_archivo = time() . "_" . $_FILES['archivo_pdf']['name'];
 $ruta_temporal  = $_FILES['archivo_pdf']['tmp_name'];
-$ruta_destino   = "archivos_docs/" . $nombre_archivo;
+$ruta_destino   = "../archivos_docs/" . $nombre_archivo;
 
 if(move_uploaded_file($ruta_temporal, $ruta_destino)){
     $sql = "INSERT INTO documentos_descargables 
@@ -26,7 +26,7 @@ if(move_uploaded_file($ruta_temporal, $ruta_destino)){
             ('$titulo', '$ruta_destino', '$fecha', '$desc', '$id_cat', '$id_sec', '$id_user')";
     
     if(mysqli_query($conexion, $sql)){
-        echo "<script>alert('Documento registrado por el administrador ID: $id_user'); window.location='https://iguana-angler-curliness.ngrok-free.dev/diego_rivera/admin_panel.php';</script>";
+        echo "<script>alert('Documento registrado por el administrador ID: $id_user'); window.location='https://iguana-angler-curliness.ngrok-free.dev/diego_rivera/php/admin_panel.php';</script>";
     } else {
         echo "Error al registrar en BD: " . mysqli_error($conexion);
     }

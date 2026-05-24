@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include 'conexion_be.php';
+    include 'php/conexion_be.php';
 
     $login_input = mysqli_real_escape_string($conexion, $_POST['correo']); 
     $password = $_POST['password'];
@@ -59,7 +59,7 @@
             $_SESSION['correo'] = $datos['correo'];
             $_SESSION['rol'] = $datos['nombre_rol'];
 
-            header("location: index.php");
+            header("location: ../index.php");
             exit();
 
         } else {

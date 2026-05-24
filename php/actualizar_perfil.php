@@ -2,7 +2,7 @@
 error_reporting(0); 
 header('Content-Type: application/json');
 
-include 'conexion_be.php';
+include 'php/conexion_be.php';
 session_start();
 
 if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['token_sesion'])) {

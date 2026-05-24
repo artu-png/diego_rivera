@@ -1,7 +1,7 @@
 <?php
 session_start();
-include 'conexion_be.php';
-include 'funciones_permisos.php';
+include 'php/conexion_be.php';
+include 'php/funciones_permisos.php';
 
 if (!tienePermiso('gestionar_usuarios')) {
     echo "No tienes autorización para realizar esta acción.";

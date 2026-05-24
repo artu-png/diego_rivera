@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'conexion_be.php';
+include 'php/conexion_be.php';
 
 if (isset($_SESSION['id_usuario'])) {
     $id_user = $_SESSION['id_usuario'];

@@ -1,7 +1,8 @@
 <?php
-    include 'conexion_be.php';
+    include 'php/conexion_be.php';
     $token_valido = false;
     $id_usuario_recuperar = null;
+    $token = '';
 
     if (isset($_GET['token'])) {
         $token = mysqli_real_escape_string($conexion, $_GET['token']);
@@ -29,7 +30,7 @@
         if (mysqli_query($conexion, $update_user)) {
             mysqli_query($conexion, "UPDATE recuperacion_password SET usados = 1 WHERE token = '$token_usado'");
             
-            echo "<script>alert('Contraseña actualizada con éxito.'); window.location='login.php';</script>";
+            echo "<script>alert('Contraseña actualizada con éxito.'); window.location='../login.php';</script>";
             exit();
         }
     }
@@ -40,7 +41,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Restablecer Contraseña</title>
-    <link rel="stylesheet" href="css/estilos.css?v=1.50"> </head>
+    <link rel="stylesheet" href="../css/estilos.css?v=1.50"> 
+    <link rel="icon" href="../img_video/Adobe Express - file.png">
+    <script defer src="../js/index.js"></script>
+</head>
 <body>
     <div class="contenido_formulario">
         <h2>Nueva Contraseña</h2>

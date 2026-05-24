@@ -1,10 +1,10 @@
 <?php
     session_start();
-    include 'conexion_be.php';
-    include_once 'funciones_permisos.php';
+    include 'php/conexion_be.php';
+    include_once 'php/funciones_permisos.php';
 
     if (!isset($_GET['id']) || empty($_GET['id'])) {
-        header("Location: index.php");
+        header("Location: ../index.php");
         exit();
     }
 
@@ -13,7 +13,7 @@
     $query_nom = mysqli_query($conexion, "SELECT nombre_seccion FROM secciones_paginas WHERE id_seccion = $id");
     
     if (mysqli_num_rows($query_nom) === 0) {
-        header("Location: index.php");
+        header("Location: ../index.php");
         exit();
     }
 
@@ -64,9 +64,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jose Diego Maria Rivera - <?php echo strtolower($nombre_seccion); ?></title>
-    <link rel="stylesheet" href="css/estilos.css?v=1.5">
-    <link rel="icon" href="img_video/Adobe Express - file.png">
-    <script defer src="js/index.js?v=1.11"></script>
+    <link rel="stylesheet" href="../css/estilos.css?v=1.5">
+    <link rel="icon" href="../img_video/Adobe Express - file.png">
+    <script defer src="../js/index.js?v=1.11"></script>
 
     <!--libreria-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
@@ -76,18 +76,16 @@
 <body>
     <header class="header">
         <nav class="nav">
-            <a href="index.php" class="logo">
-                <img class="img" src="img_video/WhatsApp_Image_2026-03-02_at_4.15.30_PM-removebg-preview.png" alt="">
+            <a href="../index.php" class="logo">
+                <img class="img" src="../img_video/WhatsApp_Image_2026-03-02_at_4.15.30_PM-removebg-preview.png" alt="">
                 <h1>Jose Diego Maria Rivera</h1>
             </a>
             <button class="nav-toggle" aria-label="Abrir menu">☰</button>
             
             <ul class="nav-menu" id="navlinks">
-                <li class="nav-menu-item"><a href="index.php" class="nav-menu-link">inicio</a></li>
+                <li class="nav-menu-item"><a href="../index.php" class="nav-menu-link">inicio</a></li>
 
                 <?php
-                include 'conexion_be.php';
-                
                 $query_menu = mysqli_query($conexion, "SELECT * FROM secciones_paginas");
 
                 while($seccion = mysqli_fetch_assoc($query_menu)) {
@@ -175,7 +173,7 @@
                                 if (isset($item['ruta_imagen']) && !empty(trim($item['ruta_imagen']))) {
                                     $ruta = $item['ruta_imagen'];
                                 } else {
-                                    $ruta = "img_video/descarga.jpg"; 
+                                    $ruta = "../img_video/descarga.jpg"; 
                                 }
                                 echo '
                                 <div class="comunicados">
@@ -199,7 +197,7 @@
                                 if (isset($item['ruta_imagen']) && !empty(trim($item['ruta_imagen']))) {
                                     $ruta = $item['ruta_imagen'];
                                 } else {
-                                    $ruta = "img_video/descarga.jpg"; 
+                                    $ruta = "../img_video/descarga.jpg"; 
                                 }
 
                                 echo '

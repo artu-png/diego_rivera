@@ -1,8 +1,8 @@
 <?php
 session_start();
-include 'conexion_be.php';
+include 'php/conexion_be.php';
 mysqli_set_charset($conexion, "utf8mb4");
-include 'funciones_permisos.php';
+include 'php/funciones_permisos.php';
 
 if (!tienePermiso('editar_contenido')) {
     exit("Acceso denegado: No tienes permisos de edición.");

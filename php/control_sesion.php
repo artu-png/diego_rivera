@@ -3,8 +3,8 @@ session_start();
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include 'conexion_be.php';
-include 'funciones_permisos.php';
+include 'php/conexion_be.php';
+include 'php/funciones_permisos.php';
 
 if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['token_sesion'])) {
     session_destroy();
@@ -28,7 +28,7 @@ if (mysqli_num_rows($resultado_seguridad) == 0) {
 }
 
 if (!tienePermiso('ver_panel_admin')) {
-    header("location: index.php"); 
+    header("location: ../index.php"); 
     exit();
 }
 

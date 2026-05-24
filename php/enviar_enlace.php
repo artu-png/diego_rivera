@@ -1,7 +1,7 @@
 <?php
-include 'conexion_be.php';
+include 'php/conexion_be.php';
 
-use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
     use PHPMailer\PHPMailer\SMTP;
 
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $mail->setFrom(getenv('SMTP_USER'), 'Unidad Educativa Privada Jose Diego Maria Rivera');
                 $mail->addAddress($email, $nombre);
 
-                $url = "https://iguana-angler-curliness.ngrok-free.dev/diego_rivera/restablecer.php?token=" . $token;
+                $url = "https://iguana-angler-curliness.ngrok-free.dev/diego_rivera/php/restablecer.php?token=" . $token;
 
                 $mail->isHTML(true);
                 $mail->Subject = 'Recuperacion de Acceso - Colegio Rivera';
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </html>";
 
                 $mail->send();
-                echo "<script>alert('Enlace enviado con éxito. Revisa tu correo.'); window.location='https://iguana-angler-curliness.ngrok-free.dev/diego_rivera/login.php';</script>";
+                echo "<script>alert('Enlace enviado con éxito. Revisa tu correo.'); window.location='https://iguana-angler-curliness.ngrok-free.dev/diego_rivera/php/login.php';</script>";
 
             } catch (Exception $e) {
                 echo "Error al enviar: {$mail->ErrorInfo}";

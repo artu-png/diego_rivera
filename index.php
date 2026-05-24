@@ -1,6 +1,7 @@
 <?php
     session_start();
-    include_once 'funciones_permisos.php'
+    include_once 'php/conexion_be.php';
+    include_once 'php/funciones_permisos.php'
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -25,14 +26,12 @@
                 <li class="nav-menu-item"><a href="index.php" class="nav-menu-link">inicio</a></li>
 
                 <?php
-                include 'conexion_be.php';
-                
                 $query_menu = mysqli_query($conexion, "SELECT * FROM secciones_paginas");
 
                 while($seccion = mysqli_fetch_assoc($query_menu)) {
                     $nombre = $seccion['nombre_seccion'];
                     echo '<li class="nav-menu-item">
-                            <a href="seccion.php?id='.$seccion['id_seccion'].'" class="nav-menu-link">'.strtolower($nombre).'</a>
+                            <a href="php/seccion.php?id='.$seccion['id_seccion'].'" class="nav-menu-link">'.strtolower($nombre).'</a>
                         </li>';
                 }
 
@@ -40,7 +39,7 @@
 
                 if (isset($_SESSION['usuario'])) {
                     if (tienePermiso('ver_panel_admin')) {
-                        $panelGestionLi = '<li><a href="admin_panel.php">⚙️ Panel de Control</a></li>';
+                        $panelGestionLi = '<li><a href="php/admin_panel.php">⚙️ Panel de Control</a></li>';
                     }
 
                     echo '
@@ -56,14 +55,14 @@
                             <hr>
                             <ul class="user-actions">
                                 ' . $panelGestionLi . ' 
-                                <li><a href="cerrar_sesion.php" class="logout-link">🚪 Cerrar Sesión</a></li>
+                                <li><a href="php/cerrar_sesion.php" class="logout-link">🚪 Cerrar Sesión</a></li>
                             </ul>
                         </div>
                     </li>';
                 } else {
                     echo '
                     <li class="nav-menu-item">
-                        <a href="login.php" class="nav-menu-link" style="font-weight: bold;"> Inicia sesión</a>
+                        <a href="php/login.php" class="nav-menu-link" style="font-weight: bold;"> Inicia sesión</a>
                     </li>';
                 }
                 ?>
