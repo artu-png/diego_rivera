@@ -1,5 +1,5 @@
 <?php
-    include 'php/conexion_be.php';
+    include 'conexion_be.php'; /** @var mysqli $conexion */
     $token_valido = false;
     $id_usuario_recuperar = null;
     $token = '';

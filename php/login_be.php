@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include 'php/conexion_be.php';
+    include 'conexion_be.php'; /** @var mysqli $conexion */
 
     $login_input = mysqli_real_escape_string($conexion, $_POST['correo']); 
     $password = $_POST['password'];

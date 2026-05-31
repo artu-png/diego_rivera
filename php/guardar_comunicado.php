@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-include 'php/conexion_be.php';
+include 'conexion_be.php'; /** @var mysqli $conexion */
 mysqli_set_charset($conexion, "utf8mb4");
-include 'php/funciones_permisos.php';
+include 'funciones_permisos.php';
 
 if (!tienePermiso('publicar_contenido')) {
     die("Error: Tu rol (ID: " . ($_SESSION['id_rol'] ?? 'Nulo') . ") no tiene asignado el permiso 'subir_contenido' en la base de datos.");
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(mysqli_stmt_execute($stmt)){
         echo '<script>
                 alert("¡Comunicado publicado con éxito!");
-                window.location = "https://iguana-angler-curliness.ngrok-free.dev/diego_rivera/php/admin_panel.php";
+                window.location = "admin_panel.php";
                 </script>';
     } else {
         echo "Error al guardar: " . mysqli_stmt_error($stmt);

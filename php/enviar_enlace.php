@@ -1,5 +1,5 @@
 <?php
-include 'php/conexion_be.php';
+include 'conexion_be.php'; /** @var mysqli $conexion */
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;

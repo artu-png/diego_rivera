@@ -1,5 +1,5 @@
 <?php
-    include 'php/conexion_be.php';
+    include 'conexion_be.php'; /** @var mysqli $conexion */
 
     if(isset($_GET['token'])){
         $token = $_GET['token'];

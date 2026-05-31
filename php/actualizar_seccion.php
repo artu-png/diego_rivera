@@ -1,6 +1,6 @@
 <?php
-include(__DIR__ . "/conexion_be.php");
-include(__DIR__ . "/control_sesion.php");
+include(__DIR__ . "conexion_be.php"); /** @var mysqli $conexion */
+include(__DIR__ . "control_sesion.php");
 
 if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] !== 'administrador') {
     die("Acceso denegado: No tienes permisos suficientes.");

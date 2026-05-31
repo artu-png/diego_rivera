@@ -7,7 +7,7 @@
     require 'librerias/PHPMailer-master/src/PHPMailer.php';
     require 'librerias/PHPMailer-master/src/SMTP.php';
 
-    include 'php/conexion_be.php';
+    include 'conexion_be.php'; /** @var mysqli $conexion */
 
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];

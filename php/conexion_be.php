@@ -10,26 +10,25 @@ if (!function_exists('cargarEnv')) {
             if (strpos($linea, '=') !== false) {
                 list($nombre, $valor) = explode('=', $linea, 2);
                 $_ENV[trim($nombre)] = trim($valor);
+                $_SERVER[trim($nombre)] = trim($valor); 
                 putenv(trim($nombre) . "=" . trim($valor));
             }
         }
     }
 }
 
-
-
-cargarEnv(__DIR__ . '/.env');
+cargarEnv(dirname(__DIR__) . '/.env');
 
 $conexion = mysqli_connect(
-    getenv('DB_HOST'),
-    getenv('DB_USER'),
-    getenv('DB_PASS'),
-    getenv('DB_NAME')
+    $_ENV['DB_HOST'] ?? '',
+    $_ENV['DB_USER'] ?? '',
+    $_ENV['DB_PASS'] ?? '',
+    $_ENV['DB_NAME'] ?? ''
 );
 
-mysqli_set_charset($conexion, "utf8");
-
 if (!$conexion) {
-    die("Error de conexión: " . mysqli_connect_error());
+    die("<b style='color:red;'>Error crítico de conexión:</b> " . mysqli_connect_error());
 }
+
+mysqli_set_charset($conexion, "utf8");
 ?>

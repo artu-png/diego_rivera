@@ -1,6 +1,7 @@
 <?php
-include 'php/conexion_be.php';
-include 'php/funciones_permisos.php';
+session_start();
+include 'conexion_be.php'; /** @var mysqli $conexion */
+include 'funciones_permisos.php';
 
 if (!tienePermiso('editar_contenido')) {
     exit("Acceso denegado: No tienes permisos de edición.");

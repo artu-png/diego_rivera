@@ -1,7 +1,7 @@
 <?php
     session_start();
-    include 'php/conexion_be.php';
-    include_once 'php/funciones_permisos.php';
+    include 'conexion_be.php'; /** @var mysqli $conexion */
+    include_once 'funciones_permisos.php';
 
     if (!isset($_GET['id']) || empty($_GET['id'])) {
         header("Location: ../index.php");
@@ -141,69 +141,56 @@
             
             <?php
                 if ($id != '5') {
-                    if(mysqli_num_rows($res_contenido) > 0) {
+                if(mysqli_num_rows($res_contenido) > 0) {
                     while($item = mysqli_fetch_assoc($res_contenido)) {
                         $titulo = strtolower($item['titulo']);
                         $categoria = $item['categoria'];
                         $desc = $item['info'];
                         $tipo = $item['tipo'];
                         $id_item = $item['id'];
-                        $ruta = $item['ruta_imagen'];
                         $nombre_estado = $item['estado_evento'];
                         $fecha = date("d/m/Y", strtotime($item['fecha']));
 
+                        if (isset($item['ruta_imagen']) && !empty(trim($item['ruta_imagen']))) {
+                            $ruta_final = "../" . trim($item['ruta_imagen']);
+                        } else {
+                            $ruta_final = "../img_video/descarga.jpg"; 
+                        }
+
                         switch($tipo) {
                             case 'galeria':
-                                $ruta_img = $item['ruta_imagen'];
                                 $titulo_forzado = "<span style='color: #000000 !important; font-weight: bold;'>" . $titulo . '</span>';
                                 echo '
                                 <div class="tarjeta-foto-pura">
-                                <a href="'.$ruta.'" data-fancybox="gallery" data-caption="'.$titulo_forzado.'">
-                                    <img src="'.$ruta_img.'" alt="'.$titulo.'" class="foto-galeria">
+                                <a href="'.$ruta_final.'" data-fancybox="gallery" data-caption="'.$titulo_forzado.'">
+                                    <img src="'.$ruta_final.'" alt="'.$titulo.'" class="foto-galeria">
                                     <div class="overlay-titulo">'.$titulo.'</div>
                                 </a>
                                 </div>';
                                 break;
 
+                            case 'comunicados':
                             case 'comunicado':
-                                $id_item = $item['id'];
-                                $nom_cat = $item['categoria'];
                                 $enlace = "detalle_comunicado.php?id=" . $id_item;
-                                $ruta = $item['ruta_imagen'];
-                                if (isset($item['ruta_imagen']) && !empty(trim($item['ruta_imagen']))) {
-                                    $ruta = $item['ruta_imagen'];
-                                } else {
-                                    $ruta = "../img_video/descarga.jpg"; 
-                                }
                                 echo '
                                 <div class="comunicados">
                                     <a class="enlaces zoom" href="'.$enlace.'">
-                                        <img src="'.$ruta.'" alt="Comunicado">
+                                        <img src="'.$ruta_final.'" alt="Comunicado">
                                     </a>
                                     <h3 class="tittle">
                                         <a href="'.$enlace.'">'.$titulo.'</a>
                                     </h3>
-                                    <p class="sinopsis">'.$nom_cat.'</p>
+                                    <p class="sinopsis">'.$categoria.'</p>
                                 </div>';
                                 break;
 
                             case 'evento':
-                                $nom_cat = $item['categoria'];
-                                $nombre_estado = $item['estado_evento'];
                                 $clase_css_estado = strtolower($nombre_estado);
                                 $enlace = "detalle_evento.php?id=" . $id_item;
-                                $fecha = date("d/m/Y", strtotime($item['fecha']));
-                                $ruta = $item['ruta_imagen'];
-                                if (isset($item['ruta_imagen']) && !empty(trim($item['ruta_imagen']))) {
-                                    $ruta = $item['ruta_imagen'];
-                                } else {
-                                    $ruta = "../img_video/descarga.jpg"; 
-                                }
-
                                 echo '
                                 <div class="comunicados">
                                     <a class="enlaces zoom" href="'.$enlace.'">
-                                        <img src="'.$ruta.'" alt="Evento">
+                                        <img src="'.$ruta_final.'" alt="Evento">
                                     </a>
                                     <h3 class="tittle">
                                         <a href="'.$enlace.'">'.$titulo.'</a>
@@ -212,16 +199,14 @@
                                     <p class="sinopsis status-badge '.$clase_css_estado.'">
                                         '.$nombre_estado.'
                                     </p>
-                                    <p class="sinopsis"><strong>Categoría:</strong> '.$nom_cat.'</p>
+                                    <p class="sinopsis"><strong>Categoría:</strong> '.$categoria.'</p>
                                 </div>';
                                 break;
-
-                            
                         }
                     }
-                    } else {
-                        echo "<p>Aún no hay actividades publicadas en esta sección.</p>";
-                    }
+                } else {
+                    echo "<p>Aún no hay actividades publicadas en esta sección.</p>";
+                }
 
                 } else { 
     $sql_cat = "SELECT * FROM categorias_documentos";
@@ -254,6 +239,7 @@
             
             mysqli_data_seek($res_docs, 0);
             while($doc = mysqli_fetch_assoc($res_docs)){
+                $ruta_doc_final = "../" . ltrim($doc['url_archivo'], './');
                 echo '<div class="fila-doc" data-cat="'.$doc['id_categoria_doc'].'">';
                     
                     echo '<div class="doc-info">';
@@ -263,8 +249,8 @@
                     echo '</div>';
 
                     echo '<div class="doc-acciones">';
-                        echo '<a href="'.$doc['url_archivo'].'" target="_blank" class="btn-admin">Ver</a>';
-                        echo '<a href="'.$doc['url_archivo'].'" download class="btn-admin">Descargar</a>';
+                        echo '<a href="'.$ruta_doc_final.'" target="_blank" class="btn-admin">Ver</a>';
+                        echo '<a href="'.$ruta_doc_final.'" download class="btn-admin">Descargar</a>';
                     echo '</div>';
                     
                 echo '</div>';

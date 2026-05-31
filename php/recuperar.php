@@ -21,7 +21,7 @@
                 <li class="nav-menu-item"><a href="../index.php" class="nav-menu-link">inicio</a></li>
 
                 <?php
-                include 'php/conexion_be.php';
+                include 'conexion_be.php'; /** @var mysqli $conexion */
                 
                 $query_menu = mysqli_query($conexion, "SELECT * FROM secciones_paginas");
 

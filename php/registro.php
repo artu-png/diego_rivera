@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include 'conexion_be.php'; /** @var mysqli $conexion */
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -24,8 +25,6 @@
                 <li class="nav-menu-item"><a href="../index.php" class="nav-menu-link">inicio</a></li>
 
                 <?php
-                include 'php/conexion_be.php';
-                
                 $query_menu = mysqli_query($conexion, "SELECT * FROM secciones_paginas");
 
                 while($seccion = mysqli_fetch_assoc($query_menu)) {

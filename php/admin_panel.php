@@ -1,7 +1,7 @@
 <?php
-    include 'php/control_sesion.php';
-    include_once 'php/conexion_be.php'; 
-    include_once 'php/funciones_permisos.php';
+    include 'control_sesion.php';
+    include 'conexion_be.php'; /** @var mysqli $conexion */
+    include_once 'funciones_permisos.php';
 
     $query_secciones = mysqli_query($conexion, "SELECT * FROM secciones_paginas");
     $opciones_html = "";
@@ -16,7 +16,7 @@
                 <button class='btn-edit' onclick='editarSeccion({$row['id_seccion']}, \"{$row['nombre_seccion']}\")' style='margin: 0;'>
                     Editar
                 </button>
-                <a href='eliminar_seccion.php?id={$row['id_seccion']}' class='btn-delete' style='text-decoration: none; margin: 0;' onclick='return confirm(\"¿Estás seguro de eliminar esta sección?\")'>
+                <a href='eliminar_registro.php?tabla=secciones_paginas&columna=id_seccion&id={$row['id_seccion']}' class='btn-delete' style='text-decoration: none; margin: 0;' onclick='return confirm(\"¿Estás seguro de eliminar esta sección?\")'>
                     Eliminar
                 </a>
             </div>
@@ -97,7 +97,7 @@
 
         $listadoGaleria .= "
         <tr>
-            <td><img src='{$foto['ruta_imagen']}' width='50'></td>
+            <td><img src='../{$foto['ruta_imagen']}' width='50'></td>
             <td>{$foto['titulo']}</td>
             <td class='acciones-tabla'>
                 $botonEditar
@@ -255,7 +255,7 @@
         const listadoSecciones = <?php echo json_encode($listadoSeccionesHTML); ?>;
     </script>
     
-    <script defer src="../js/index.js?v=1.101"></script>
+    <script defer src="../js/index.js?v=1.107"></script>
 </head>
 
 <body>

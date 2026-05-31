@@ -3,8 +3,8 @@ session_start();
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include 'php/conexion_be.php';
-include 'php/funciones_permisos.php';
+include 'conexion_be.php'; /** @var mysqli $conexion */
+include 'funciones_permisos.php';
 
 if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['token_sesion'])) {
     session_destroy();

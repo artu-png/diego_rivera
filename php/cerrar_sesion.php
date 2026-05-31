@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'php/conexion_be.php';
+include 'conexion_be.php'; /** @var mysqli $conexion */
 
 if (isset($_SESSION['id_usuario'])) {
     $id_user = $_SESSION['id_usuario'];
@@ -8,6 +8,6 @@ if (isset($_SESSION['id_usuario'])) {
 }
 
 session_destroy();
-header("location: index.php");
+header("location: ../index.php");
 exit();
 ?>

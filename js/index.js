@@ -344,7 +344,7 @@ function mostrar(modulo) {
         if (permisosUser.canAdminSecciones) {
     html += `
         <section class="admin-section">
-            <h3><i class="fas fa-layer-group"></i> Secciones del Menú</h3>
+            <h3><i class="fas fa-layer-group"></i> Secciones del Menús</h3>
             
             <div class="formulario-admin" style="margin-bottom: 20px; display: flex; gap: 10px;">
                 <input type="text" id="nueva-seccion-nombre" placeholder="Nombre de la nueva sección" style="flex: 1;">
@@ -513,24 +513,63 @@ function guardarNuevoRol() {
 }
 
 function guardarNuevaSeccion() {
-    const nombre = document.getElementById('nueva-seccion-nombre').value;
+    console.log('[guardarNuevaSeccion] iniciada');
+    const input = document.getElementById('nueva-seccion-nombre');
 
-    if (nombre.trim() === "") {
+    if (!input) {
+        console.log('[guardarNuevaSeccion] input no encontrado');
+        alert('No se encontró el campo para crear una nueva sección. Recarga la página e intenta de nuevo.');
+        return;
+    }
+
+    const nombre = input.value.trim();
+
+    console.log('[guardarNuevaSeccion] nombre=', nombre);
+
+    if (nombre === "") {
         alert("Por favor, escribe un nombre para la sección.");
         return;
     }
+
+    // Opcional: deshabilitar input y botones para evitar doble envío
+    input.disabled = true;
+    const boton = document.querySelector('.btn-add-inline');
+    if (boton) boton.disabled = true;
+
+    console.log('[guardarNuevaSeccion] enviando fetch a guardar_seccion.php');
 
     fetch('guardar_seccion.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `nombre_seccion=${encodeURIComponent(nombre)}`
     })
-    .then(res => res.text())
-    .then(data => {
-        alert("Sección creada con éxito");
-        location.reload();
+    .then(async res => {
+        console.log('[guardarNuevaSeccion] respuesta HTTP', res.status);
+        const text = await res.text();
+        console.log('[guardarNuevaSeccion] respuesta text length', text.length);
+        try {
+            const data = JSON.parse(text);
+            console.log('[guardarNuevaSeccion] respuesta JSON', data);
+            if (data.status === 'success') {
+                alert(data.message || 'Sección creada con éxito');
+                location.reload();
+            } else {
+                alert('Error: ' + (data.message || text));
+            }
+        } catch (e) {
+            // Si la respuesta no es JSON, mostrar texto crudo para depuración
+            alert('Respuesta inesperada del servidor: ' + text);
+            console.error('Respuesta no JSON:', text);
+        }
     })
-    .catch(error => console.error('Error:', error));
+    .catch(error => {
+        console.error('Error en fetch:', error);
+        alert('Error de red o del servidor. Revisa la consola para más detalles.');
+    })
+    .finally(() => {
+        input.disabled = false;
+        if (boton) boton.disabled = false;
+    });
 }
 
 // Cambiar rol de usuario

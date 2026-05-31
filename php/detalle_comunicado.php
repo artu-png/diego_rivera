@@ -1,6 +1,7 @@
 <?php
     session_start();
-    include("php/conexion_be.php");
+    include 'conexion_be.php'; /** @var mysqli $conexion */
+    include_once 'funciones_permisos.php';
 
     if(!isset($_GET['id']) || empty($_GET['id']) || !is_numeric($_GET['id'])) {
         header("Location: ../index.php");
@@ -104,7 +105,7 @@
     <div class="cuerpo-comunicado">
         <?php if(!empty($comunicado['ruta_imagen'])): ?>
             <div class="foto-oficial-contenedor">
-                <img src="<?php echo $comunicado['ruta_imagen']; ?>" alt="Imagen Oficial" class="foto-oficial">
+                <img src="../<?php echo $comunicado['ruta_imagen']; ?>" alt="Imagen Oficial" class="foto-oficial">
             </div>
         <?php endif; ?>
 

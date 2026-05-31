@@ -2,7 +2,7 @@
 error_reporting(0); 
 header('Content-Type: application/json');
 
-include 'php/conexion_be.php';
+include 'conexion_be.php'; /** @var mysqli $conexion */
 session_start();
 
 if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['token_sesion'])) {

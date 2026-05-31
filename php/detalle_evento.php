@@ -1,6 +1,7 @@
 <?php
     session_start();
-    include 'php/conexion_be.php';
+    include 'conexion_be.php'; /** @var mysqli $conexion */
+    include_once 'funciones_permisos.php';
 
     if(!isset($_GET['id']) || empty($_GET['id']) || !is_numeric($_GET['id'])) {
         header("Location: ../index.php");
@@ -137,7 +138,7 @@
 
     <div class="galeria-evento <?php echo $clase_dinamica; ?>">
         <?php while($img = mysqli_fetch_assoc($res_img)): ?>
-            <a href="<?php echo $img['ruta_archivo']; ?>" data-fancybox="gallery"><img src="<?php echo $img['ruta_archivo']; ?>" alt="Imagen de <?php echo $evento['titulo_evento']; ?> - Colegio María Reina Roda""></a>
+            <a href="../<?php echo $img['ruta_archivo']; ?>" data-fancybox="gallery"><img src="../<?php echo $img['ruta_archivo']; ?>" alt="Imagen de <?php echo $evento['titulo_evento']; ?> - Colegio María Reina Roda""></a>
         <?php endwhile; ?>
     </div>
 
