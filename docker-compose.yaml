@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  # --- CONTENEDOR DE LA BASE DE DATOS ---
+  db:
+    image: mariadb:10.4
+    container_name: diego_rivera_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./data_mysql:/var/lib/mysql
+
+  # --- CONTENEDOR DE TU PÁGINA WEB (PHP/APACHE) ---
+  web:
+    build: .
+    container_name: diego_rivera_web
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html/
+    depends_on:
+      - db

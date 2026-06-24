@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'conexion_be.php'; /** @var mysqli $conexion */
-mysqli_set_charset($conexion, "utf8mb4");
+ "utf8mb4");
 include 'funciones_permisos.php';
 
 if (!tienePermiso('editar_contenido')) {

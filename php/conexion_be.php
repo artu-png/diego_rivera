@@ -30,5 +30,5 @@ if (!$conexion) {
     die("<b style='color:red;'>Error crítico de conexión:</b> " . mysqli_connect_error());
 }
 
-mysqli_set_charset($conexion, "utf8");
+mysqli_set_charset($conexion, "utf8mb4");
 ?>

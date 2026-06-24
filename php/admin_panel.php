@@ -73,8 +73,10 @@
             <td>{$com['titulo']}</td>
             <td>{$com['fecha_vencimiento']}</td>
             <td class='acciones-tabla'>
+                <div class='acciones-contenedor'>
                 $botonEditar
                 $botonEliminar
+                </div>
             </td>
         </tr>";
     }
@@ -100,8 +102,10 @@
             <td><img src='../{$foto['ruta_imagen']}' width='50'></td>
             <td>{$foto['titulo']}</td>
             <td class='acciones-tabla'>
+                <div class='acciones-contenedor'>
                 $botonEditar
                 $botonEliminar
+                </div>
             </td>
         </tr>";
     }
@@ -136,8 +140,10 @@
             <td>{$titulo_limpio}</td>
             <td>{$ev['fecha_inicio']}</td>
             <td class='acciones-tabla'>
+                <div class='acciones-contenedor'>
                 $botonEditar
                 $botonEliminar
+                </div>
             </td>
         </tr>";
     }
@@ -171,8 +177,10 @@
             <td>{$doc['titulo_documento']}</td>
             <td>{$doc['nombre_categoria']}</td>
             <td class='acciones-tabla'>
+                <div class='acciones-contenedor'>
                 $botonEditar
                 $botonEliminar
+                </div>
             </td>
         </tr>";
     }
@@ -226,7 +234,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración - Colegio Maria Reina Roda</title>
-    <link rel="stylesheet" href="../css/estilos.css?v=1.114">
+    <link rel="stylesheet" href="../css/estilos.css?v=1.1400">
     <link rel="icon" href="../img_video/Adobe Express - file.png">
     <script>
         const permisosUser = {

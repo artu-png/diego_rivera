@@ -871,7 +871,7 @@ p{
     background-color: rgba(218, 234, 242);
     border-radius: 15px 15px 0 0;
     padding: 40px;
-    margin: 0 20px 0 20px;
+    margin: 10px 20px 0 20px;
     flex-grow: 1; 
 }
 
@@ -921,7 +921,7 @@ p{
     max-width: 1200px;
     min-width: 0;
     background: #DAEAF2;
-    margin: auto;
+    margin: 10px auto 0 auto;
     border-radius: 15px 15px 0 0;
     padding: 20px;
     text-align: justify;
@@ -968,6 +968,19 @@ p{
     cursor: pointer;
     text-decoration: none;
     font-weight: bold;
+}
+
+.tabla-gestion {
+    max-height: 500px; 
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 8px; 
+}
+
+.tabla-admin thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 @media (max-width: 768px) {
@@ -1037,27 +1050,23 @@ p{
     background-color: #f9f9f9;
 }
 
-.acciones-tabla {
+.acciones-contenedor {
+    width: 100%;
     display: flex;
-    gap: 10px;
-    text-align: center !important;
-    vertical-align: middle !important;
-    padding: 10px !important;
-    width: auto !important;
+    flex-direction: row;
+    flex-wrap: nowrap !important;
+    align-items: center;
 }
 
-.acciones-tabla div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px; 
-    margin: 0 auto;
-    width: fit-content;
+.acciones-contenedor .btn-delete,
+.acciones-contenedor button:last-child,
+.acciones-contenedor a:last-child {
+    margin-left: 12px;
 }
 
 .tabla-admin th:last-child, 
 .tabla-admin td:last-child {
-    width: 1% !important;
+    width: 180px;
     white-space: nowrap;
 }
 
@@ -1253,7 +1262,7 @@ p{
 .seccion-layout-fijo:has(.repositorio-full) {
     width: 100% !important;
     max-width: 1300px !important;
-    margin: 0 auto !important;
+    margin: 10px auto 0 auto !important;
     display: flex;
     justify-content: center;
     padding: 0 10px;
@@ -1706,12 +1715,6 @@ img, video{
     aspect-ratio: 16/9;
     overflow: hidden;
     border-radius: 4px;
-}
-
-.tabla-gestion{
-    display: block;
-    overflow-x: auto;
-    width: 100%;
 }
 
 @media (max-width: 768px) {

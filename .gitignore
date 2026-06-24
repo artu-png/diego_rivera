@@ -1,3 +1,5 @@
 .env
-/uploads
 /BD
+/data_mysql
+/librerias
+db_pagina_web.sql

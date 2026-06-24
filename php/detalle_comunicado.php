@@ -31,7 +31,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $comunicado['titulo']; ?> | Jose Diego Maria Rivera</title>
-    <link rel="stylesheet" href="../css/estilos.css?v=1.40"> 
+    <link rel="stylesheet" href="../css/estilos.css?v=1.410"> 
     <link rel="icon" href="../img_video/Adobe Express - file.png">
     <script defer src="../js/index.js?v=1.5"></script>
 </head>
